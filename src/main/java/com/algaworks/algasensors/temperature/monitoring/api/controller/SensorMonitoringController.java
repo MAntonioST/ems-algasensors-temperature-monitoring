@@ -1,6 +1,6 @@
 package com.algaworks.algasensors.temperature.monitoring.api.controller;
 
-import com.algaworks.algasensors.temperature.monitoring.api.model.SensorMonitoringOuput;
+import com.algaworks.algasensors.temperature.monitoring.api.model.SensorMonitoringOutput;
 import com.algaworks.algasensors.temperature.monitoring.domain.model.SensorId;
 import com.algaworks.algasensors.temperature.monitoring.domain.model.SensorMonitoring;
 import com.algaworks.algasensors.temperature.monitoring.domain.repository.SensorMonitoringRepository;
@@ -17,10 +17,10 @@ public class SensorMonitoringController {
     private final SensorMonitoringRepository sensorMonitoringRepository;
 
     @GetMapping
-    public SensorMonitoringOuput getDetail(@PathVariable TSID sensorId) {
+    public SensorMonitoringOutput getDetail(@PathVariable TSID sensorId) {
         SensorMonitoring sensorMonitoring = findByIdOrDefault(sensorId);
 
-        return SensorMonitoringOuput.builder()
+        return SensorMonitoringOutput.builder()
                 .id(sensorMonitoring.getId().getValue())
                 .enabled(sensorMonitoring.getEnabled())
                 .lastTemperature(sensorMonitoring.getLastTemperature())
@@ -46,7 +46,7 @@ public class SensorMonitoringController {
         sensorMonitoringRepository.saveAndFlush(sensorMonitoring);
     }
 
-    @DeleteMapping("/enable")
+    @DeleteMapping("/disable")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void disable(@PathVariable TSID sensorId) {
         SensorMonitoring sensorMonitoring = findByIdOrDefault(sensorId);
