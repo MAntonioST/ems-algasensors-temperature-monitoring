@@ -38,7 +38,7 @@ public class SensorMonitoringController {
                         .build());
     }
 
-    @PutMapping("/enable")
+    @PatchMapping("/enable")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void enable(@PathVariable TSID sensorId) {
         SensorMonitoring sensorMonitoring = findByIdOrDefault(sensorId);
@@ -46,7 +46,7 @@ public class SensorMonitoringController {
         sensorMonitoringRepository.saveAndFlush(sensorMonitoring);
     }
 
-    @PutMapping("/disable")
+    @PatchMapping("/disable")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void disable(@PathVariable TSID sensorId) {
         SensorMonitoring sensorMonitoring = findByIdOrDefault(sensorId);
