@@ -20,7 +20,7 @@ public class SensorMonitoringController {
 
     private final SensorMonitoringRepository sensorMonitoringRepository;
 
-    @GetMapping
+    @GetMapping("/detail")
     public SensorMonitoringOuput getDetail(@PathVariable TSID sensorId) {
         SensorMonitoring sensorMonitoring = findByIdOrDefault(sensorId);
 
